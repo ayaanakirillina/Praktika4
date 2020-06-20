@@ -1,0 +1,36 @@
+6. Напишите функцию, которая возвращает ссылку на максимальный из трех своих аргументов.
+Используя ее, замените значение максимального из трех чисел их средним значением.
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+double *maximum(double &a, double &b, double &c)
+{
+	double *pmax;
+	if(a>=b && a>=c)
+		pmax = &a;
+	if(b>=a && b>=c)
+		pmax = &b;
+	if(c>=a && c>=b)
+		pmax = &c;
+	return pmax;
+}
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	
+	double a, b, c;
+	cout << "Введите a = "; cin >> a; cout << "Адрес переменной a - " << &a << endl;
+	cout << "Введите b = "; cin >> b; cout << "Адрес переменной b - " << &b << endl;
+	cout << "Введите c = "; cin >> c; cout << "Адрес переменной c - " << &c << endl;
+	double *max = maximum(a, b, c);
+	cout << "\nМаксимальный аргумент = " << *max << "\nЕго ссылка - " << max << endl;
+	*max = (a+b+c)/3.0;
+	cout << "\nИзмененные переменные:" << endl;
+	cout << "a = " << a << endl;
+	cout << "b = " << b << endl;
+	cout << "c = " << c << endl;
+}
